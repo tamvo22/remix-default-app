@@ -8,7 +8,6 @@ import {
 	Scripts,
 	ScrollRestoration,
 	useNavigation,
-	useSearchParams,
 } from '@remix-run/react';
 
 import appStylesHref from './app.css';

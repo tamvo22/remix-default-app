@@ -1,37 +1,53 @@
 {
-  "name": "my-remix-app",
-  "private": true,
-  "sideEffects": false,
-  "scripts": {
-    "build": "remix build",
-    "dev": "remix dev --manual",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve build",
-    "typecheck": "tsc"
-  },
-  "dependencies": {
-    "@remix-run/node": "^2.4.0",
-    "@remix-run/react": "^2.4.0",
-    "@remix-run/serve": "^2.4.0",
-    "isbot": "^3.6.13",
-    "match-sorter": "^6.3.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "remix-typedjson": "^0.4.1",
-    "sort-by-typescript": "^1.2.5",
-    "tiny-invariant": "^1.3.1"
-  },
-  "devDependencies": {
-    "@remix-run/dev": "^2.3.1",
-    "@types/react": "^18.2.20",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.13.0",
-    "@typescript-eslint/parser": "^6.13.0",
-    "eslint": "^8.47.0",
-    "eslint-plugin-react": "^7.33.2",
-    "typescript": "^5.1.6"
-  },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+	"name": "my-remix-app",
+	"private": true,
+	"sideEffects": false,
+	"scripts": {
+		"prebuild": "npm run generate:types",
+		"build": "remix build",
+		"predev": "npm run generate:types",
+		"dev": "remix dev --manual",
+		"lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+		"start": "remix-serve build",
+		"generate:types": "graphql-codegen",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.7.1",
+		"@remix-run/node": "^2.4.0",
+		"@remix-run/react": "^2.4.0",
+		"@remix-run/serve": "^2.4.0",
+		"@tanstack/react-query": "^5.14.2",
+		"graphql": "^16.8.1",
+		"isbot": "^3.6.13",
+		"jotai": "^2.6.0",
+		"jotai-tanstack-query": "^0.8.0",
+		"match-sorter": "^6.3.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"remix-typedjson": "^0.4.1",
+		"sort-by-typescript": "^1.2.5",
+		"tiny-invariant": "^1.3.1",
+		"wonka": "^6.3.4",
+		"zod": "^3.22.4"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^5.0.0",
+		"@graphql-codegen/typescript": "^4.0.1",
+		"@graphql-codegen/typescript-operations": "^4.0.1",
+		"@parcel/watcher": "^2.3.0",
+		"@remix-run/dev": "^2.4.0",
+		"@tanstack/eslint-plugin-query": "^5.12.1",
+		"@types/react": "^18.2.20",
+		"@types/react-dom": "^18.2.7",
+		"@typescript-eslint/eslint-plugin": "^6.13.0",
+		"@typescript-eslint/parser": "^6.13.0",
+		"eslint": "^8.47.0",
+		"eslint-plugin-react": "^7.33.2",
+		"prisma": "^5.7.1",
+		"typescript": "^5.1.6"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	}
 }
