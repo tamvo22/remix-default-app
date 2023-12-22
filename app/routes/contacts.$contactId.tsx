@@ -5,6 +5,7 @@ import invariant from 'tiny-invariant';
 import { typedjson, useTypedLoaderData } from 'remix-typedjson';
 
 import { getContact, updateContact, type ContactRecord } from '../data';
+import { GetCharactersQuery } from '~/gql';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.contactId, 'Missing contactId param');
