@@ -5,9 +5,13 @@ import invariant from 'tiny-invariant';
 import { typedjson, useTypedLoaderData } from 'remix-typedjson';
 
 import { getContact, updateContact, type ContactRecord } from '../data';
-import { GetCharactersQuery } from '~/gql';
+import { useGetCharactersQuery } from '~/gql';
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+import type { loader } from './api.characters';
+export { loader } from './api.characters';
+import { graphQLClient } from '~/gql/graphql';
+
+/* export const loader = async ({ params }: LoaderFunctionArgs) => {
 	invariant(params.contactId, 'Missing contactId param');
 	const contact = await getContact(params.contactId);
 
@@ -16,7 +20,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 	}
 
 	return typedjson({ contact });
-};
+}; */
 
 export const action = async ({ params, request }: ActionFunctionArgs) => {
 	invariant(params.contactId, 'Missing contactId param');
@@ -27,12 +31,15 @@ export const action = async ({ params, request }: ActionFunctionArgs) => {
 };
 
 export default function Contact() {
-	const { contact } = useTypedLoaderData<typeof loader>();
+	//const { dehydratedState } = useTypedLoaderData<typeof loader>();
+	const { data, isFetching } = useGetCharactersQuery(graphQLClient);
+
+	console.log('data', data);
 
 	return (
 		<div id="contact">
 			<div>
-				<img
+				{/*<img
 					alt={`${contact.first} ${contact.last} avatar`}
 					key={contact.avatar}
 					src={contact.avatar}
@@ -59,7 +66,7 @@ export default function Contact() {
 					</p>
 				) : null}
 
-				{contact.notes ? <p>{contact.notes}</p> : null}
+				{contact.notes ? <p>{contact.notes}</p> : null} */}
 
 				<div>
 					<Form action="edit">
